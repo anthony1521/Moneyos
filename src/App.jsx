@@ -641,9 +641,9 @@ function WorkspaceModal({ cell, onClose }) {
     setMessages(prev=>[...prev,userMsg]);
     setLoading(true); setInput("");
     try {
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
+      const res=await fetch("/api/claude",{
         method:"POST",
-        headers:{"Content-Type":"application/json","x-api-key":API_KEY,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+        headers:{"Content-Type":"application/json"},
         body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:2000,system:cell.systemPrompt,messages:[...messages,userMsg]}),
       });
       const data=await res.json();
